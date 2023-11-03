@@ -11,13 +11,13 @@ using StarCraft2Bot.Builds.Base.Condition;
 
 namespace StarCraft2Bot.Builds
 {
-    public class DefensiveOpener : Build
+    public class OneOneOneOpener : Build
     {
         private bool openingAttackChatSent;
 
         private Queue<BuildAction>? BuildOrder { get; set; }
 
-        public DefensiveOpener(DefaultSharkyBot defaultSharkyBot, IIndividualMicroController scvMicroController) : base(defaultSharkyBot)
+        public OneOneOneOpener(DefaultSharkyBot defaultSharkyBot, IIndividualMicroController scvMicroController) : base(defaultSharkyBot)
         {
             openingAttackChatSent = false;
         }
@@ -32,11 +32,11 @@ namespace StarCraft2Bot.Builds
 
             BuildOrder = new Queue<BuildAction>();
             MacroData.DesiredUnitCounts[UnitTypes.TERRAN_SCV] = 18;
-            // supply depot, 14, 0:18
+            // supply depot, 14
             BuildOrder.Enqueue(new BuildAction(new SupplyCondition(14, MacroData), new SupplyDepotDesire(1, MacroData)));
             // Barrack
             BuildOrder.Enqueue(new BuildAction(new SupplyCondition(15, MacroData), new ProductionStructureDesire(UnitTypes.TERRAN_BARRACKS, 1, MacroData)));
-            // 1 refinery, 16, 0:45/0:54
+            // 1 refinery, 16
             BuildOrder.Enqueue(new BuildAction(new SupplyCondition(16, MacroData), new GasBuildingCountDesire(1, MacroData)));
             // Reaper, 19
             BuildOrder.Enqueue(new BuildAction(new SupplyCondition(19, MacroData), new UnitDesire(UnitTypes.TERRAN_REAPER, 3, MacroData.DesiredUnitCounts)));
@@ -75,7 +75,7 @@ namespace StarCraft2Bot.Builds
             AttackData.Attacking = true;
             if (!openingAttackChatSent)
             {
-                ChatService.SendChatType($"{nameof(DefensiveOpener)}-FirstAttack");
+                ChatService.SendChatType($"{nameof(OneOneOneOpener)}-FirstAttack");
                 openingAttackChatSent = true;
             }
         }
