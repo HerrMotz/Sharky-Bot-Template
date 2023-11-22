@@ -27,12 +27,11 @@ namespace StarCraft2Bot.Builds
         {
             base.StartBuild(frame);
 
-            BuildOptions.StrictGasCount = true;
-            BuildOptions.StrictSupplyCount = true;
-            BuildOptions.StrictWorkerCount = true;
+            BuildOptions.StrictGasCount = false;
+            BuildOptions.StrictSupplyCount = false;
+            BuildOptions.StrictWorkerCount = false;
 
             MacroData.DesiredUnitCounts[UnitTypes.TERRAN_SCV] = 19;
-
 
             AddAction(new BuildAction(new UnitCompletedCountCondition(UnitTypes.TERRAN_SUPPLYDEPOT, 1, UnitCountService),
                           new CustomDesire(() => {
@@ -42,11 +41,11 @@ namespace StarCraft2Bot.Builds
 
             BuildOrder = new Queue<BuildAction>();
 
-            BuildOrder.Enqueue(new BuildAction(new SupplyCondition(14, MacroData),
-                                               new SupplyDepotDesire(1, MacroData)));
+            // BuildOrder.Enqueue(new BuildAction(new SupplyCondition(14, MacroData),
+            //                                    new SupplyDepotDesire(1, MacroData)));
 
-            BuildOrder.Enqueue(new BuildAction(new SupplyCondition(15, MacroData),
-                                               new GasBuildingCountDesire(1, MacroData)));
+            // BuildOrder.Enqueue(new BuildAction(new SupplyCondition(15, MacroData),
+            //                                    new GasBuildingCountDesire(1, MacroData)));
 
             BuildOrder.Enqueue(new BuildAction(new SupplyCondition(16, MacroData),
                                                new ProductionStructureDesire(UnitTypes.TERRAN_BARRACKS, 1, MacroData)));
@@ -71,11 +70,11 @@ namespace StarCraft2Bot.Builds
                                                new AddonStructureDesire(UnitTypes.TERRAN_BARRACKSREACTOR, 1, MacroData)));
 
             BuildOrder.Enqueue(new BuildAction(new UnitCountCondition(UnitTypes.TERRAN_FACTORY, 1, UnitCountService),
-                                               new SupplyDepotDesire(2, MacroData),
+                                               // new SupplyDepotDesire(2, MacroData),
                                                new AddonStructureDesire(UnitTypes.TERRAN_FACTORYTECHLAB, 1, MacroData)));
 
-            BuildOrder.Enqueue(new BuildAction(new SupplyCondition(22, MacroData),
-                                               new GasBuildingCountDesire(2, MacroData)));
+            // BuildOrder.Enqueue(new BuildAction(new SupplyCondition(22, MacroData),
+            //                                    new GasBuildingCountDesire(2, MacroData)));
 
             BuildOrder.Enqueue(new BuildAction(new UnitCompletedCountCondition(UnitTypes.TERRAN_FACTORY, 1, UnitCountService),
                                                new UnitDesire(UnitTypes.TERRAN_CYCLONE, 1, MacroData.DesiredUnitCounts)));
@@ -119,6 +118,8 @@ namespace StarCraft2Bot.Builds
             
             // man kann die Buildorder leeren
             //  dann geht er in die nächste Transition
+            
+            // TODO: Wie können wir steuern, welche Transition er machen soll?
         }
 
         public override bool Transition(int frame)
