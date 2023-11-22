@@ -31,7 +31,7 @@ namespace StarCraft2Bot.Builds
             AddAction(new BuildAction(new UnitCompletedCountCondition(UnitTypes.TERRAN_SUPPLYDEPOT, 1, UnitCountService),
                           new CustomDesire(() => {
                               MicroTaskData[typeof(WorkerScoutTask).Name].Enable();
-                              MicroTaskData[typeof(AttackTask).Name].Enable();
+                              // MicroTaskData[typeof(AttackTask).Name].Enable();
                           })));
 
             BuildOrder.Enqueue(new BuildAction(new SupplyCondition(14, MacroData),
@@ -49,6 +49,7 @@ namespace StarCraft2Bot.Builds
 
             // ENTWEDER: Gegner hat Baracke in der Base => CC bauen, ODER: Gegner hat keine Baracke in der Base => Gegner spielt Proxy => Transition
             // Wir tun mal so als spielt der Gegner nie Proxy, TODO: anderen Fall implementieren (Hausaufgaben yay)
+            
             BuildOrder.Enqueue(new BuildAction(new SupplyCondition(20, MacroData),
                                                new ProductionStructureDesire(UnitTypes.TERRAN_COMMANDCENTER, 2, MacroData)));
 
@@ -107,6 +108,9 @@ namespace StarCraft2Bot.Builds
                 nextAction.EnforceDesires();
                 BuildOrder.Dequeue();
             }
+            
+            // man kann die Buildorder leeren
+            //  dann geht er in die nächste Transition
         }
 
         public override bool Transition(int frame)
