@@ -1,4 +1,4 @@
-﻿namespace StarCraft2Bot.Helper
+﻿namespace StarCraft2Bot.Database.Enum
 {
     public enum Map
     {
