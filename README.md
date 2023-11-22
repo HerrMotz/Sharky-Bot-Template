@@ -2,12 +2,31 @@
 
 using the Sharky framework adaptation by Aceto
 
+## TODOs
+- Use Advanced Attack Manager
+
 ## What should we do?
+
++ **Watch Videos...**
 
 + Build an opener from the database
 + Refine the opener
 + Which buildings from the opener can we use?
 + And to which follow-up strategies can we transition with the preconditions of the opener
+
+An welchen Stellen ist der Build anfällig?
+Welche Informationen sind für die Entscheidungsfindung sinnvoll?
+
+Wir sollen einen Entscheidungsbaum für den Opener aufstellen.
+→ Gebäude die gebaut werden sollen
+→ Reaktionen auf Angriffe
+
+Standardbeispiele: 
+- Auf Proxy einen Bunker bauen,
+- ...
+
+→ Endziel des Moduls: Wir wollen später die wichtigen Umstände von der KI parametrisiert lernen lassen (damit sie selbst eine 
+"Entscheidung" trifft)
 
 e.g. Reaper Opener → Mech
 
