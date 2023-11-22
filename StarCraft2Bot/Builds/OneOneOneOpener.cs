@@ -5,6 +5,7 @@ using Sharky.DefaultBot;
 using Sharky.MicroControllers;
 using Sharky.MicroTasks;
 using Sharky;
+using StarCraft2Bot.Bot;
 using StarCraft2Bot.Builds.Base;
 using StarCraft2Bot.Builds.Base.Desires;
 using StarCraft2Bot.Builds.Base.Condition;
@@ -17,7 +18,7 @@ namespace StarCraft2Bot.Builds
 
         private Queue<BuildAction>? BuildOrder { get; set; }
 
-        public OneOneOneOpener(DefaultSharkyBot defaultSharkyBot, IIndividualMicroController scvMicroController) : base(defaultSharkyBot)
+        public OneOneOneOpener(BaseBot defaultSharkyBot) : base(defaultSharkyBot)
         {
             openingAttackChatSent = false;
         }
